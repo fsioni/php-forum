@@ -14,7 +14,6 @@ CREATE TABLE the_forum.Users
     id             INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     pseudo         VARCHAR(100),
     email          VARCHAR(255),
-    date_naissance DATE,
     password       TEXT,
     lastSeen       VARCHAR(255)
 );
