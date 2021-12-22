@@ -1,10 +1,9 @@
 <?php
-
 require_once 'statics/header.php';
 require_once 'statics/navbar.php'; ?>
 <br>
 
-<div class="container">
+<main class="container">
     <h1><?= $title ?></h1>
     <?php
     if (isset($errorMsg)) {
@@ -15,6 +14,6 @@ require_once 'statics/navbar.php'; ?>
     ?>
 
     <?php include('views/' . $view . '.php'); ?>
-</div><br>
+</main><br>
 
 <?php require_once 'statics/footer.php'; ?>
