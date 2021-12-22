@@ -6,7 +6,7 @@
                     <use xlink:href="#bootstrap"/>
                 </svg>
             </a>
-            <span class="text-muted">&copy; 2021 <?= SITENAME ?>, Inc</span>
+            <span class="text-muted">&copy; 2021 <?= SITENAME ?>, Inc by <strong>SIONI Farès</strong></span>
         </div>
     </footer>
 </div>
