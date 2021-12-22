@@ -12,8 +12,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         $lastPosts = GetLastPostsFromUser($db, $userId);
         $lastComments = GetLastCommentsFromUser($db, $userId);
-
-        //TODO Ajouter une vue au profil
     } else {
         $errorMsg = "Aucun n'utilisateur ne correspond";
     }
