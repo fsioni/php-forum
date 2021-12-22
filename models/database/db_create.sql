@@ -1,21 +1,21 @@
 CREATE DATABASE IF NOT EXISTS the_forum;
 
-SET FOREIGN_KEY_CHECKS=0;
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS the_forum.Users;
 DROP TABLE IF EXISTS the_forum.Posts;
 DROP TABLE IF EXISTS the_forum.Comments;
 DROP TABLE IF EXISTS the_forum.CommentsVotes;
 DROP TABLE IF EXISTS the_forum.PostsVotes;
 DROP TABLE IF EXISTS the_forum.Tags;
-SET FOREIGN_KEY_CHECKS=1;
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE the_forum.Users
 (
-    id             INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    pseudo         VARCHAR(100),
-    email          VARCHAR(255),
-    password       TEXT,
-    lastSeen       VARCHAR(255)
+    id       INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    pseudo   VARCHAR(100),
+    email    VARCHAR(255),
+    password TEXT,
+    lastSeen VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS the_forum.Posts
@@ -24,9 +24,12 @@ CREATE TABLE IF NOT EXISTS the_forum.Posts
     author_id INT,
     title     TEXT,
     content   TEXT,
+    date      VARCHAR(255),
     status    VARCHAR(255),
+    views     INT             NOT NULL DEFAULT 0,
     FOREIGN KEY (author_id) REFERENCES Users (id)
-);
+) DEFAULT CHARSET = utf8mb4
+  DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS the_forum.PostsVotes
 (
@@ -43,6 +46,7 @@ CREATE TABLE IF NOT EXISTS the_forum.Comments
     author_id INT,
     post_id   INT,
     content   TEXT,
+    date      VARCHAR(255),
     FOREIGN KEY (author_id) REFERENCES Users (id),
     FOREIGN KEY (post_id) REFERENCES Posts (id)
 );
