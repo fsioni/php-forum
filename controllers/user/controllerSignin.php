@@ -1,8 +1,8 @@
 <?php
 $title = "Connexion";
 
-require ('models/modelUser.php');
-include('controllers/isDisconnectedSecurity.php');
+require_once('models/modelUser.php');//pour les actions sur l'utilisateur
+include('controllers/user/isDisconnectedSecurity.php');
 
 if (isset($_POST['validate'])) {
     if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
@@ -10,13 +10,16 @@ if (isset($_POST['validate'])) {
         $userPseudo = htmlspecialchars($_POST['pseudo']);
         $userPassword = $_POST['password'];
 
+        //Vérifie si l'utilisateur existe
         $userExists = GetUserFromPseudo($db, $userPseudo);
 
-        if ($userExists->rowCount() > 0) {//Si le pseudo est libre
+        if ($userExists->rowCount() > 0) {//Si le pseudo est correct
             $userInfos = $userExists->fetch();
-            if (password_verify($userPassword, $userInfos['password'])) {
+            if (password_verify($userPassword, $userInfos['password'])) {//Si les mdp correspondent
+                //Authentification de l'utilisateur
                 $_SESSION['auth'] = TRUE;
                 $_SESSION['pseudo'] = $userPseudo;
+                $_SESSION['id'] = $userInfos['id'];
                 ChangeLastSeen($db, $userPseudo);
                 header("Location: index.php");
             } else {
